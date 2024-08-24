@@ -8,15 +8,15 @@ using namespace std;
 class GPR{
 
 	protected:
-		uint8_t		DATA:	8;
-		uint8_t		CODE:	3;
+		uint8_t		DATA: 8;
+		uint8_t		CODE: 3;
 	
 	public:
 
-		uint8_t getCode()					{return CODE;}
+		uint8_t getCode() {return CODE;}
 
-		uint8_t getData()					{return DATA;}
-		void setData(uint8_t newData)		{DATA = newData;}
+		uint8_t getData() {return DATA;}
+		void setData(uint8_t newData) {DATA = newData;}
 
 		//constructor
 		GPR(uint8_t address, uint8_t data=0b0){
@@ -36,13 +36,11 @@ class FlagRegister: public GPR{
 	public:
 
 		//constructor
-		FlagRegister(uint8_t initialData = 0b0):GPR(0b0){
-			setData(initialData);
-		}
+		FlagRegister(uint8_t initialData = 0b0):GPR(0b0) {setData(initialData);}
 
 		//applying bit mask to keep all non-flag values at zero
-		uint8_t getData() 				{return DATA & 0b11010101;}
-		void setData(uint8_t newData)	{DATA = newData & 0b11010101;}
+		uint8_t getData() {return DATA & 0b11010101;}
+		void setData(uint8_t newData) {DATA = newData & 0b11010101;}
 			
 		void setCarry(bool set){
 			if(set) DATA |= 0b00000001;
@@ -82,8 +80,8 @@ class RegisterPair: public GPR{
 	public:
 
 		//constructor
-		RegisterPair(uint16_t initialData, uint8_t code):GPR(code){DATA = initialData;}
+		RegisterPair(uint16_t initialData, uint8_t code):GPR(code) {DATA = initialData;}
 
-		uint16_t getData() 				{return DATA;}
-		void setData(uint16_t newData)	{DATA = newData;}
+		uint16_t getData() {return DATA;}
+		void setData(uint16_t newData) {DATA = newData;}
 };

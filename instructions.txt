@@ -97,22 +97,22 @@ RST	N		Restart							11NN_N111
 -------------------------------------------------------------------------------------------------------------
 
 I/O and Machine Control
-OPCODE	OPERAND(S)	DESCRIPTION					OPCODE		BYTE1	BYTE2
+OPCODE	OPERAND(S)	DESCRIPTION						OPCODE		BYTE1	BYTE2
 -------------------------------------------------------------------------------------------------------------
-PUSH	Rp/PSW		Push content of register pair to stack
-POP	Rp/PSW		Pop content of register pair from stack	
+POP	Rp/PSW		Pop content of register pair from stack			11RR_0001
+PUSH	Rp/PSW		Push content of register pair to stack			11RR_0101
 
-XTHL 			Exchange top stack with H-L
-SPHL			Move H-L to stack pointer
+XTHL 			Exchange top stack with H-L				1110_0011 (E3)
+SPHL			Move H-L to stack pointer				1111_1001 (F9)	
 
-OUT	PORT		Output from accumulator to I/O port
-IN	PORT		Input to accumulator from I/O port
+OUT	PORT		Output from accumulator to I/O port			1101_0011 (D3)	DATA
+IN	PORT		Input to accumulator from I/O port			1101_1011 (DB)	DATA
 
-DI			Disable Interrput
-EI			Enable Interrupt
-NOP			No operation
-HLT			Halt
+DI			Disable Interrput					1111_0011 (F3)
+EI			Enable Interrupt					1111_1011 (FB)
+NOP			No operation						0000_0000 (00)
+HLT			Halt							0111_0110 (76)
 
-RIM			Read Interrupts Masks
-SIM			Set Interrupts Masks
+RIM			Read Interrupts Masks					0010_0000 (20)
+SIM			Set Interrupts Masks					0011_0000 (30)
 -------------------------------------------------------------------------------------------------------------

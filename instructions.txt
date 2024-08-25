@@ -11,7 +11,7 @@ LXI	Rp/SP,	ADDR	Load 16-bit in register pair				00RR_0001	ADDR	ADDR
 XCHG			Exchange D-E with H-L					1110_1011 (EB)
 
 STA	ADDR		Store accumulator direct				0011_0010 (32)	ADDR	ADDR
-LDA	ADDR		Load Accumulator direct					0011_1010 (3A)	ADDR	ADDR
+LDA	ADDR		Load accumulator direct					0011_1010 (3A)	ADDR	ADDR
 STAX	Rp		Store accumulator indirect - BC/DE only			000R_0010
 LDAX	Rp		Load accumulator indirect  - BC/DE only			000R_1010
 SHLD	ADDR		Store H-L registers direct				0010_0010 (22)	ADDR	ADDR

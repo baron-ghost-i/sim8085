@@ -1,0 +1,118 @@
+INSTRUCTION SET
+-------------------------------------------------------------------------------------------------------------
+
+Data Transfer Grou
+OPCODE	OPERAND(S)	DESCRIPTION						OPCODE		BYTE1	BYTE2
+-------------------------------------------------------------------------------------------------------------
+MOV	Rd,	Rs	Move the content of a register/memory to another	01DD_DSSS
+
+MVI	R/M,	DATA	Move immediate data to register/memory			00DD_D110	DATA
+LXI	Rp/SP,	ADDR	Load 16-bit in register pair				00RR_0001	ADDR	ADDR
+XCHG			Exchange D-E with H-L					1110_1011 (EB)
+
+STA	ADDR		Store accumulator direct				0011_0010 (32)	ADDR	ADDR
+LDA	ADDR		Load Accumulator direct					0011_1010 (3A)	ADDR	ADDR
+STAX	Rp		Store accumulator indirect - BC/DE only			000R_0010
+LDAX	Rp		Load accumulator indirect  - BC/DE only			000R_1010
+SHLD	ADDR		Store H-L registers direct				0010_0010 (22)	ADDR	ADDR
+LHLD	ADDR		Load H-L pair direct					0010_1010 (2A)	ADDR	ADDR
+-------------------------------------------------------------------------------------------------------------
+
+Arithmetic and Logic Group
+OPCODE	OPERAND(S)	DESCRIPTION						OPCODE		BYTE1	BYTE2
+-------------------------------------------------------------------------------------------------------------
+ADD	R/M		Add register/memory to accumulator			1000_0SSS
+ADC	R/M		Add register/memory with carry to accumulator		1000_1SSS
+SUB	R/M		Subtract register/memory from accumulator		1001_0SSS
+SBB	R/M		Subtract register/memory with carry from accumulator	1001_1SSS
+
+DAD	Rp		Add register pair to H-L pair				00RR_1001
+
+INR	R/M		Increment register/memory content			00SS_S100
+INX	Rp		Increment register pair					00RR_0011
+DCR	R/M		Decrement register/memory content			00SS_S101
+DCX	Rp		Decrement register pair					00RR_1011
+
+DAA			Decimal adjust accumulator				0010_0111 (27)
+CMA			Complement the accumulator				0010_1111 (2F)
+STC			Set Carry						0011_0111 (37)
+CMC			Complement the carry status				0011_1111 (3F)
+
+RLC			Rotate accumulator left					0000_0111 (07)
+RRC			Rotate accumulator right				0000_1111 (0F)
+RAL			Rotate accumulator left through carry			0001_0111 (17)
+RAR			Rotate accumulator right through carry			0001_1111 (1F)
+
+ANA	R/M		AND register/memory with accumulator			1010_0SSS
+XRA  	R/M		XOR register/memory with accumulator			1010_1SSS
+ORA	R/M		OR register/memory with accumulator			1011_0SSS
+CMP	R/M		Compare register/memory with accumulator		1011_0SSS
+
+ADI	DATA		Add immediate data to accumulator			1100_0110 (C6)	DATA
+ACI	DATA		Add with carry immediate data to accumulator		1100_1110 (CE)	DATA
+SUI	DATA		Subtract immediate data from accumulator		1101_0110 (D6)	DATA
+SBI	DATA		Subtract immediate from accumulator with borrow		1101_1110 (DE)	DATA
+
+ANI	DATA		AND immediate data with accumulator			1110_0110 (E6)	DATA
+XRI	DATA		XOR immediate data with accumulator			1110_1110 (EE)	DATA
+ORI	DATA		OR immediate data with accumulator			1111_0110 (F6)	DATA
+CPI	DATA		Compare immediate data with accumulator			1111_1110 (FE)	DATA
+-------------------------------------------------------------------------------------------------------------
+
+Branch Control Group
+OPCODE	OPERAND(S)	DESCRIPTION						OPCODE		BYTE1	BYTE2
+-------------------------------------------------------------------------------------------------------------
+JMP	ADDR		Unconditional jump					1100_0011 (C3)	ADDR	ADDR
+JNZ	ADDR		Jump if Z=0						1100_0010 (C2)	ADDR	ADDR
+JZ	ADDR		Jump if Z=1						1100_1010 (CA)	ADDR	ADDR
+JNC	ADDR		Jump if C=0						1101_0010 (D2)	ADDR	ADDR
+JC	ADDR		Jump if C=1						1101_1010 (DA)	ADDR	ADDR
+JPO	AODR		Jump if P=0						1110_0010 (E2)	ADDR	ADDR
+JPE	ADDR		Jump if P=1						1110_1010 (EA)	ADDR	ADDR
+JP	ADDR		Jump if S=0						1111_0010 (F2)	ADDR	ADDR
+JM	ADDR		Jump if S=1						1111_1010 (FA)	ADDR	ADDR
+PCHL			Jump address specified by H-L pair			1110_1001 (E9)
+
+CALL	ADDR		Call subroutine unconditionally				1100_1101 (CD)	ADDR	ADDR
+CNZ	ADOR		Call Subroutine if Z=0					1100_0100 (C4)	ADDR	ADDR
+CZ	ADDR		Call Subroutine if Z=1					1100_1100 (CC)	ADDR	ADDR
+CNC	ADDR		Call subroutine if C=0					1101_0100 (D4)	ADDR	ADDR
+CC	ADDR		Call subroutine if C=1					1101_1100 (DC)	ADDR	ADDR
+CPO	ADDR		Call subroutine if P=0					1110_0100 (E4)	ADDR	ADDR
+CPE	ADDR		Call subroutine if P=1					1110_1100 (EC)	ADDR	ADDR
+CP	ADDR		Call Subroutine if S=0					1111_0100 (F4)	ADDR	ADDR
+CM	ADDR		Call Subroutine if S=1					1111_1101 (FC)	ADDR	ADDR
+
+RET			Return from subroutine unconditionally			1100_1001 (C9)
+RNZ			Return from subroutine if Z=0				1100_0000 (C0)
+RZ			Return from subroutine if Z=1				1100_1000 (C8)
+RNC			Return from subroutine if C=0				1101_0000 (D0)
+RC			Return from subroutine if C=1				1101_1000 (D8)
+RPO			Return from subroutine if P=0				1110_0000 (E0)
+RPE			Return from subroutine if P=1				1110_1000 (E8)
+RP			Return from subroutine if S=0				1111_0000 (F0)
+RM			Return from subroutine if S=1				1111_1000 (F8)
+
+RST	N		Restart							11NN_N111
+-------------------------------------------------------------------------------------------------------------
+
+I/O and Machine Control
+OPCODE	OPERAND(S)	DESCRIPTION					OPCODE		BYTE1	BYTE2
+-------------------------------------------------------------------------------------------------------------
+PUSH	Rp/PSW		Push content of register pair to stack
+POP	Rp/PSW		Pop content of register pair from stack	
+
+XTHL 			Exchange top stack with H-L
+SPHL			Move H-L to stack pointer
+
+OUT	PORT		Output from accumulator to I/O port
+IN	PORT		Input to accumulator from I/O port
+
+DI			Disable Interrput
+EI			Enable Interrupt
+NOP			No operation
+HLT			Halt
+
+RIM			Read Interrupts Masks
+SIM			Set Interrupts Masks
+-------------------------------------------------------------------------------------------------------------

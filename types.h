@@ -1,14 +1,13 @@
 typedef unsigned int uint;
 
-typedef enum R {
+typedef enum Reg {
 	B, C,
 	D, E,
 	H, L,
 	M, A
-} R;
+} Reg;
 
-typedef enum Rp {
+typedef enum RegPair {
 	BC, DE,
-	HL, AF,
-	SP, PC
-} Rp;
+	HL, SP
+} RegPair;

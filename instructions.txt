@@ -1,7 +1,7 @@
 INSTRUCTION SET
 -------------------------------------------------------------------------------------------------------------
 
-Data Transfer Grou
+Data Transfer Group
 OPCODE	OPERAND(S)	DESCRIPTION						OPCODE		BYTE1	BYTE2
 -------------------------------------------------------------------------------------------------------------
 MOV	Rd,	Rs	Move the content of a register/memory to another	01DD_DSSS

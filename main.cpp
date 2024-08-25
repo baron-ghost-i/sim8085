@@ -4,11 +4,13 @@
 #include "registers.h"
 
 int main(){
-	Register A(0b111);
-	Register B(0b000);
-	Register C(0b001);
-	Register D(0b010);
-	Register E(0b011);
-	Register H(0b100);
-	Register L(0b101);
+	Accumulator	A(Reg::A);
+	Register	B(Reg::B, 0x00);
+	Register	C(Reg::C, 0x00);
+	Register	D(Reg::D, 0x00);
+	Register	E(Reg::E, 0x00);
+	Register	H(Reg::H, 0x00);
+	Register	L(Reg::L, 0x00);
+
+	int8_t  	Memory[0xFFFF];
 }

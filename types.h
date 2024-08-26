@@ -1,5 +1,3 @@
-typedef unsigned int uint;
-
 typedef enum Reg {
 	B, C,
 	D, E,

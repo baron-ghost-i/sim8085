@@ -4,10 +4,10 @@ INSTRUCTION SET
 Data Transfer Group
 OPCODE	OPERAND(S)	DESCRIPTION						OPCODE		BYTE1	BYTE2
 -------------------------------------------------------------------------------------------------------------
-MOV	Rd/M,	Rs/M	Move the content of a register/memory to another	01DD_DSSS
+MOV	Rd/M, Rs/M	Move the content of a register/memory to another	01DD_DSSS
 
-MVI	R/M,	DATA	Move immediate data to register/memory			00DD_D110	DATA
-LXI	Rp/SP,	ADDR	Load 16-bit in register pair				00RR_0001	ADDR	ADDR
+MVI	R/M, DATA	Move immediate data to register/memory			00DD_D110	DATA
+LXI	Rp/SP, ADDR	Load 16-bit in register pair				00RR_0001	ADDR	ADDR
 XCHG			Exchange D-E with H-L					1110_1011 (EB)
 
 STA	ADDR		Store accumulator direct				0011_0010 (32)	ADDR	ADDR
